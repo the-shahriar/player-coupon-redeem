@@ -19,5 +19,5 @@ export class PlayerCoupon {
   coupon: Coupon;
 
   @CreateDateColumn()
-  createdAt: Date;
+  redeemedAt: Date;
 }

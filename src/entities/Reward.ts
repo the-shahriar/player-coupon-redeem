@@ -4,8 +4,11 @@ export class Reward {
   @PrimaryGeneratedColumn()
   id: number;
 
-  @Column({ default: true })
-  status: boolean;
+  @Column()
+  startDate: Date;
+
+  @Column()
+  endDate: Date;
 
   @Column()
   perDayLimit: number;
