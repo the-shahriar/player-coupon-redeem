@@ -5,6 +5,9 @@ export class Reward {
   id: number;
 
   @Column()
+  name: string;
+
+  @Column()
   startDate: Date;
 
   @Column()
