@@ -19,7 +19,6 @@ const config = {
   migrations: process.env.typeorm === 'true' ? ['migrations/*.ts'] : [],
   autoLoadEntities: true,
   synchronize: false,
-  logging: true,
 };
 
 export default registerAs('typeorm', () => config);

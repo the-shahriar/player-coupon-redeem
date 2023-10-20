@@ -16,7 +16,7 @@ export class AppService {
       const current_date = moment();
 
       // initialize db connection
-      const dbConnection = await connectionSource.connect();
+      const dbConnection = await connectionSource.initialize();
 
       /* 
         Notes: I am assuming the configuration as ---------
@@ -89,6 +89,7 @@ export class AppService {
       const isRedeemed = await this.isCouponRedeemed(
         dbConnection,
         rewardCoupon.coupon_id,
+        body.playerId,
       );
 
       if (isRedeemed) {
@@ -144,12 +145,17 @@ export class AppService {
   }
 
   // check is coupon redeemed or not
-  async isCouponRedeemed(dbConnection: any, coupon_id: number) {
+  async isCouponRedeemed(
+    dbConnection: any,
+    coupon_id: number,
+    playerId: number,
+  ) {
     try {
       const isRedeemed = await dbConnection
         .createQueryBuilder(PlayerCoupon, 'coupon')
         .select(['coupon.id as id'])
         .where('coupon.couponId = :couponId', { couponId: coupon_id })
+        .andWhere('coupon.playerId = :playerId', { playerId: playerId })
         .getRawOne();
 
       return isRedeemed;
