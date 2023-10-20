@@ -1,5 +1,3 @@
-## Software Engineer Backend Test 1
-
 ## Installation
 
 ```bash
